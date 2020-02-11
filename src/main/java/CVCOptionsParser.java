@@ -17,13 +17,16 @@ public class CVCOptionsParser
             String content = new String(Files.readAllBytes(Paths.get("arith_options.toml")));
             Toml toml = new Toml().read(content);
             List<HashMap<String, Object>> options = toml.getList("option");
-            Map<String, Argument> argumetsMap = new HashMap<>();
+            Map<String, Argument> argumentMap = new HashMap<>();
             for (HashMap<String, Object> option: options)
             {
                 String name = (String) option.get("long");
                 Argument argument = new Argument();
                 argument.prefix = "--";
                 argument.description = (String) option.get("help");
+                Object defaultValue = option.get("default");
+                argument.defaultValue = defaultValue == null? null: (String) defaultValue;
+                Object min = option.get("default");
                 Object modes = option.get("mode");
                 if(modes == null)
                 {
@@ -49,10 +52,10 @@ public class CVCOptionsParser
                         argument.allowedValues.add(allowedValue);
                     }
                 }
-                argumetsMap.put(name, argument);
+                argumentMap.put(name, argument);
             }
 
-            System.out.println(argumetsMap);
+            System.out.println(argumentMap);
         }
         catch (IOException e)
         {
