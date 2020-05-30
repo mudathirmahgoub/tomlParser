@@ -59,7 +59,10 @@ public class CVCTomlOptions
             argument.prefix = "--";
             argument.description = (String) option.get("help");
             Object defaultValue = option.get("default");
-            argument.defaultValue = defaultValue == null ? null : (String) defaultValue;
+            if(defaultValue != null)
+            {
+                argument.defaultValue = ((String) defaultValue).toLowerCase().replace("_", "-");
+            }
             Object min = option.get("default");
             Object modes = option.get("mode");
             if (modes == null)
