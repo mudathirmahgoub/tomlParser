@@ -1,0 +1,52 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+apply plugin: 'java' // adds 'test' task
+
+mainClassName = 'edu.uiowa.cvc.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.0'
+
+    // https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j
+    compile group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.2'
+
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.6.2')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.6.2')
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+test {
+    // enable JUnit Platform (a.k.a. JUnit 5) support
+    useJUnitPlatform()
+
+    // set a system property for the test JVM(s)
+    systemProperty 'some.prop', 'value'
+
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+
+    // listen to events in the test execution lifecycle
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+
+    // Fail the 'test' task on the first test failure
+    failFast = false
+
+    // listen to standard out and standard error of the test JVM(s)
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message)
+    }
+}
