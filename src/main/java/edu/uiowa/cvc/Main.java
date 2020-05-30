@@ -1,8 +1,10 @@
 package edu.uiowa.cvc;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Main
@@ -12,14 +14,10 @@ public class Main
         try
         {
             Map<String, Argument> argumentMap = CVCTomlOptions.parseTomlFile("arith_options.toml");
-            System.out.println(argumentMap);
 
-//            String json = IOUtils.toString(inputStream, Charset.defaultCharset());
-//            inputStream.close();
-//
-//            ObjectMapper mapper = new ObjectMapper();
-//            cvcArguments = mapper.readValue(json,
-//                    new TypeReference<HashMap<String, Argument>>(){});
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writer().withDefaultPrettyPrinter().writeValueAsString(argumentMap);
+            System.out.println(json);
         }
         catch (IOException e)
         {

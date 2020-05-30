@@ -21,6 +21,18 @@ public class CVCTomlOptions
         for (HashMap<String, Object> option : options)
         {
             String name = (String) option.get("long");
+            // remove = from the name
+            if(name.contains("="))
+            {
+                Argument helpArgument = new Argument();
+                helpArgument.prefix = "--";
+                // add another boolean option for the help
+                helpArgument.description = (String) option.get("help");
+                helpArgument.defaultValue = null;
+                helpArgument.type = "bool";
+                argumentMap.put(name, helpArgument);
+                name = name.split("=")[0];
+            }
             Argument argument = new Argument();
             argument.prefix = "--";
             argument.description = (String) option.get("help");

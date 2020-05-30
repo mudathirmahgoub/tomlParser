@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 
     // https://mvnrepository.com/artifact/com.moandjiezana.toml/toml4j
     compile group: 'com.moandjiezana.toml', name: 'toml4j', version: '0.7.2'
@@ -23,8 +23,8 @@ dependencies {
 }
 
 compileJava {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_10
+    targetCompatibility = JavaVersion.VERSION_1_10
 }
 
 test {
