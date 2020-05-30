@@ -1,0 +1,45 @@
+{
+  "lang": {
+    "type": "string",
+    "prefix": "--",
+    "allowedValues": [
+      "auto",
+      "cvc4",
+      "smtlib1",
+      "smtlib2.0",
+      "smtlib2.5",
+      "smtlib2.6",
+      "tptp",
+      "sygus1",
+      "sygus2"
+    ],
+    "description": "force input language",
+    "defaultValue": "smtlib2.6"
+  },
+  "output-lang": {
+    "type": "string",
+    "prefix": "--",
+    "allowedValues": [
+      "auto",
+      "cvc4",
+      "cvc3",
+      "smtlib1",
+      "smtlib2.0",
+      "smtlib2.5",
+      "smtlib2.6",
+      "tptp",
+      "z3str",
+      "ast"
+    ],
+    "description": "force output language",
+    "defaultValue": "auto"
+  },
+  "tlimit": {
+    "type": "int",
+    "prefix": "--",
+    "min": 1,
+    "max": 60000,
+    "description": "enable time limiting (give milliseconds)",
+    "defaultValue": "30000"
+  }
+}

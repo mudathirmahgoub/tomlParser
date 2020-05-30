@@ -5,10 +5,7 @@ import com.moandjiezana.toml.Toml;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CVCTomlOptions
 {
@@ -18,9 +15,17 @@ public class CVCTomlOptions
         Toml toml = new Toml().read(content);
         List<HashMap<String, Object>> options = toml.getList("option");
         Map<String, Argument> argumentMap = new HashMap<>();
+        if(options == null)
+        {
+            return argumentMap;
+        }
         for (HashMap<String, Object> option : options)
         {
             String name = (String) option.get("long");
+            if(name == null)
+            {
+                name = (String) option.get("name");
+            }
             // remove = from the name
             if(name.contains("="))
             {
