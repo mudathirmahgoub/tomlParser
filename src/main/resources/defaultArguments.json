@@ -23,6 +23,7 @@
       "cvc3",
       "smtlib2.6",
       "tptp",
+      "sygus2",
       "z3str",
       "ast"
     ],
