@@ -53,13 +53,6 @@ public class CVCTomlOptions
             // remove = from the name
             if (name.contains("="))
             {
-                Argument helpArgument = new Argument();
-                helpArgument.prefix = "--";
-                // add another boolean option for the help
-                helpArgument.description = (String) option.get("help");
-                helpArgument.defaultValue = null;
-                helpArgument.type = "bool";
-                argumentMap.put(name, helpArgument);
                 name = name.split("=")[0];
             }
             Argument argument = new Argument();
@@ -92,6 +85,7 @@ public class CVCTomlOptions
                     String help = (String) ((HashMap) ((ArrayList) value).get(0)).get("help");
                     argument.allowedValues.add(allowedValue);
                 }
+                argument.allowedValues.add("help");
             }
             argumentMap.put(name, argument);
         }
