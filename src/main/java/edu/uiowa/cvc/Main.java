@@ -1,10 +1,13 @@
 package edu.uiowa.cvc;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.cli.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.*;
@@ -72,15 +75,7 @@ public class Main
                 throw new Exception("Can not open directory " + cvc4Directory);
             }
 
-            List<String> tomlFiles = getAllTomlFiles(new File(cvc4Directory));
-
-            Map<String, Argument> allArguments = new LinkedHashMap<>();
-
-            for (String file : tomlFiles)
-            {
-                Map<String, Argument> arguments = CVCTomlOptions.parseTomlFile(file);
-                allArguments.putAll(arguments);
-            }
+            Map<String, Argument> allArguments = CVCTomlOptions.getAllArguments(cvc4Directory);
 
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writer().withDefaultPrettyPrinter().writeValueAsString(allArguments);
@@ -108,27 +103,5 @@ public class Main
         {
             e.printStackTrace();
         }
-    }
-
-    private static List<String> getAllTomlFiles(File directory)
-    {
-        List<String> tomlFiles = new ArrayList<>();
-
-        for (File file : directory.listFiles())
-        {
-            if (file.isDirectory())
-            {
-                tomlFiles.addAll(getAllTomlFiles(file));
-            }
-            else
-            {
-                if (file.getName().endsWith(".toml"))
-                {
-                    tomlFiles.add(file.getAbsolutePath());
-                }
-            }
-        }
-
-        return tomlFiles;
     }
 }
