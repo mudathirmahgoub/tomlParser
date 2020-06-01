@@ -71,6 +71,7 @@ public class CVCTomlOptions
                 if (type.contains("bool"))
                 {
                     argument.type = "bool";
+                    argument.defaultValue = "";
                 }
                 if (type.contains("int"))
                 {
