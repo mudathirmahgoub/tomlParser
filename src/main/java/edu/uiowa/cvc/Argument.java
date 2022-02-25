@@ -18,6 +18,7 @@ import java.util.List;
 public class Argument
 {
     public String type;
+    public boolean alternate = false;
     public String prefix;
     public List<String> allowedValues;
     public String description;
@@ -30,6 +31,7 @@ public class Argument
     {
         return "Argument{" +
                 "type='" + type + '\'' +
+                ", alternate='" + alternate + '\'' +
                 ", prefix='" + prefix + '\'' +
                 ", allowedValues=" + allowedValues +
                 ", description='" + description + '\'' +

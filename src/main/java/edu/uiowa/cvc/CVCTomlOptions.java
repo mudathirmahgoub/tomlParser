@@ -72,6 +72,12 @@ public class CVCTomlOptions
                 {
                     argument.type = "bool";
                     argument.defaultValue = "";
+                    Boolean alternate = (Boolean) option.get("alternate");
+                    if(alternate != null)
+                    {
+                        argument.alternate = true;
+                    }
+
                 }
                 if (type.contains("int"))
                 {
