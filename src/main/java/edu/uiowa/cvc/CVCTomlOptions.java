@@ -75,7 +75,7 @@ public class CVCTomlOptions
                     Boolean alternate = (Boolean) option.get("alternate");
                     if(alternate != null)
                     {
-                        argument.alternate = true;
+                        argument.alternate = alternate;
                     }
 
                 }
