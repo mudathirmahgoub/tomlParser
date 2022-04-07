@@ -9,5 +9,5 @@ $ java -version
  $ git clone https://github.com/CVC4/CVC4
  $ cd tomlParser     
  $ ./gradlew build 
- $ java -jar build/libs/tomlParser-all.jar -src ../CVC4/src -o cvcArguments.json 
+ $ java -jar build/libs/tomlParser-all.jar -src /home/mudathir/Desktop/cvc5/production/src -o cvcArguments.json 
 ```
