@@ -17,6 +17,7 @@ import java.util.List;
 
 public class Argument
 {
+    public String category;
     public String type;
     public boolean alternate = false;
     public String prefix;
@@ -30,6 +31,7 @@ public class Argument
     public String toString()
     {
         return "Argument{" +
+                "category='" + category + '\'' +
                 "type='" + type + '\'' +
                 ", alternate='" + alternate + '\'' +
                 ", prefix='" + prefix + '\'' +

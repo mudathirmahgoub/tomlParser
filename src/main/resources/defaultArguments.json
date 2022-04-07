@@ -1,5 +1,6 @@
 {
   "lang": {
+    "category": "common",
     "type": "string",
     "prefix": "--",
     "allowedValues": [
@@ -11,6 +12,7 @@
     "defaultValue": "smtlib2.6"
   },
   "output-lang": {
+    "category": "common",
     "type": "string",
     "prefix": "--",
     "allowedValues": [
@@ -23,6 +25,7 @@
     "defaultValue": "auto"
   },
   "tlimit": {
+    "category": "common",
     "type": "int",
     "prefix": "--",
     "min": 1,

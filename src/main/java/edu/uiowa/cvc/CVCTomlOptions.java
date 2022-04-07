@@ -45,6 +45,7 @@ public class CVCTomlOptions
         }
         for (HashMap<String, Object> option : options)
         {
+            // skip undocumented category
             String name = (String) option.get("long");
             if (name == null)
             {
@@ -56,6 +57,11 @@ public class CVCTomlOptions
                 name = name.split("=")[0];
             }
             Argument argument = new Argument();
+            argument.category = (String) option.get("category");
+            if(argument.category.equals("undocumented"))
+            {
+                continue;
+            }
             argument.prefix = "--";
             argument.description = (String) option.get("help");
             Object defaultValue = option.get("default");
@@ -83,6 +89,12 @@ public class CVCTomlOptions
                 {
                     argument.type = "int";
                 }
+                if (type.contains("double"))
+                {
+                    argument.type = "float";
+                }
+                // skip if the type is not supported in the web
+                continue;
             }
             else
             {
