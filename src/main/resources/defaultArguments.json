@@ -1,7 +1,7 @@
 {
   "lang": {
     "category": "common",
-    "type": "string",
+    "type": "list",
     "prefix": "--",
     "allowedValues": [
       "smtlib2.6",
@@ -13,7 +13,7 @@
   },
   "output-lang": {
     "category": "common",
-    "type": "string",
+    "type": "list",
     "prefix": "--",
     "allowedValues": [
       "smtlib2.6",

@@ -98,7 +98,7 @@ public class CVCTomlOptions
             }
             else
             {
-                argument.type = "string";
+                argument.type = "list";
                 HashMap hashMap = (HashMap) modes;
                 argument.allowedValues = new ArrayList<>();
                 for (Object value : hashMap.values())
