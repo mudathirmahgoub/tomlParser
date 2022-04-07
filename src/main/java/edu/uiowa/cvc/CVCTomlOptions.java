@@ -69,7 +69,6 @@ public class CVCTomlOptions
             {
                 argument.defaultValue = ((String) defaultValue).toLowerCase().replace("_", "-");
             }
-            Object min = option.get("default");
             Object modes = option.get("mode");
             if (modes == null)
             {
@@ -85,16 +84,21 @@ public class CVCTomlOptions
                     }
 
                 }
-                if (type.contains("int"))
+                else if (type.contains("int"))
                 {
                     argument.type = "int";
+                    getIntegerMinMax(argument, option);
                 }
-                if (type.contains("double"))
+                else if (type.contains("double"))
                 {
                     argument.type = "float";
+                    getFloatMinMax(argument, option);
                 }
-                // skip if the type is not supported in the web
-                continue;
+                else
+                {
+                    // skip if the type is not supported in the web
+                    continue;
+                }
             }
             else
             {
@@ -112,6 +116,30 @@ public class CVCTomlOptions
             argumentMap.put(name, argument);
         }
         return argumentMap;
+    }
+
+    private static void getIntegerMinMax(Argument argument, HashMap<String, Object> option)
+    {
+        try
+        {
+            argument.min = Integer.parseInt((String) option.get("minimum"));
+        }
+        catch (NumberFormatException e)
+        {
+            argument.min = 0;
+        }
+    }
+
+    private static void getFloatMinMax(Argument argument, HashMap<String, Object> option)
+    {
+        try
+        {
+            argument.min = Float.parseFloat((String) option.get("minimum"));
+        }
+        catch (NumberFormatException e)
+        {
+            argument.min = 0;
+        }
     }
 
     public static Map<String, Argument> getDefaultArguments() throws IOException
